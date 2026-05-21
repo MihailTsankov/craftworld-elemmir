@@ -1,0 +1,37 @@
+.scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+}
+
+/* === Craftworld background image === */
+.craftworld {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* === Craftworld overlay — same image, masked to craftworld body only ===
+   z-index 2 sits between ship-behind (z-index 1) and ship-front (z-index 3).
+   Ships disappear under this when in the back half of their orbit. */
+.craftworld-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  user-select: none;
+  pointer-events: none;
+  z-index: 2;
+  mask-image: radial-gradient(ellipse 34% 46% at 35% 50%, black 68%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 34% 46% at 35% 50%, black 68%, transparent 100%);
+}
