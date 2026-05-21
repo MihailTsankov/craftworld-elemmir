@@ -1,9 +1,12 @@
 import "./App.css";
+import { useNavigate } from "react-router-dom";
 import Stars from "./components/Stars";
 import Spaceship from "./components/Spaceship";
 import craftworldImg from "./assets/craftworld.png";
 
 export default function App() {
+  const navigate = useNavigate();
+
   return (
     <div className="scene">
       {/* Background — full screen craftworld */}
@@ -16,6 +19,13 @@ export default function App() {
       {/* Craftworld overlay at z-index 2 — masks just the craftworld body
           so ships disappear behind it in the back half of their orbit */}
       <img className="craftworld-overlay" src={craftworldImg} alt="" draggable={false} aria-hidden={true} />
+
+      {/* Clickable middle dome — sits above the overlay */}
+      <button
+        className="dome-button"
+        aria-label="Enter the dome"
+        onClick={() => navigate("/dome")}
+      />
 
       {/* Stars always on top */}
       <Stars />
