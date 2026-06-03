@@ -1,9 +1,11 @@
 import { useState } from "react";
 import centralDome from "../assets/central-dome.png";
 import crystalDomeMainHall from "../assets/crystal-dome-main-hall.png";
+import bansheeTemple from "../assets/banshees_temple_blue_hair_kneel_dome_better_runes.png";
 
 export default function DomePage() {
   const [hovered, setHovered] = useState(false);
+  const [bansheeHovered, setBansheeHovered] = useState(false);
 
   return (
     <div
@@ -29,10 +31,36 @@ export default function DomePage() {
             WebkitMaskImage: "radial-gradient(ellipse at center, black 50%, transparent 75%)",
           }}
         />
-        {/* Hotspot over the main building — adjust left/top/width/height to fit */}
+        {/* Hotspot over the left-edge building */}
         <div
+          role="button"
+          tabIndex={0}
+          aria-label="Banshee's Temple"
+          onMouseEnter={() => setBansheeHovered(true)}
+          onMouseLeave={() => setBansheeHovered(false)}
+          onFocus={() => setBansheeHovered(true)}
+          onBlur={() => setBansheeHovered(false)}
+          style={{
+            position: "absolute",
+            left: "14%",
+            top: "35%",
+            width: "12%",
+            height: "20%",
+            cursor: "pointer",
+            borderRadius: "50%",
+            boxShadow: bansheeHovered ? "0 0 30px 15px rgba(180, 100, 255, 0.6)" : "none",
+            background: bansheeHovered ? "rgba(180, 100, 255, 0.08)" : "transparent",
+          }}
+        />
+        {/* Hotspot over the main building */}
+        <div
+          role="button"
+          tabIndex={0}
+          aria-label="Crystal Dome Main Hall"
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
+          onFocus={() => setHovered(true)}
+          onBlur={() => setHovered(false)}
           style={{
             position: "absolute",
             left: "48%",
@@ -47,6 +75,22 @@ export default function DomePage() {
         />
       </div>
 
+      {bansheeHovered && (
+        <img
+          src={bansheeTemple}
+          alt="Banshee's Temple"
+          style={{
+            position: "fixed",
+            bottom: "24px",
+            right: "24px",
+            width: "560px",
+            maxWidth: "calc(100vw - 48px)",
+            border: "2px solid #b47eff",
+            borderRadius: "12px",
+            pointerEvents: "none",
+          }}
+        />
+      )}
       {hovered && (
         <img
           src={crystalDomeMainHall}
