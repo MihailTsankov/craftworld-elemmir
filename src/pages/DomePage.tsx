@@ -2,6 +2,7 @@ import { useState } from "react";
 import centralDome from "../assets/central-dome.png";
 import crystalDomeMainHall from "../assets/crystal-dome-main-hall.png";
 import bansheeTemple from "../assets/banshees_temple_blue_hair_kneel_dome_better_runes.png";
+import BackToStarshipIcon from "../components/BackToStarshipIcon";
 
 export default function DomePage() {
   const [hovered, setHovered] = useState(false);
@@ -19,6 +20,8 @@ export default function DomePage() {
         position: "relative",
       }}
     >
+      <BackToStarshipIcon />
+
       <div style={{ position: "relative", display: "inline-block" }}>
         <img
           src={centralDome}
