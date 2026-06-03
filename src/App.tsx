@@ -12,9 +12,8 @@ export default function App() {
       {/* Background — full screen craftworld */}
       <img className="craftworld" src={craftworldImg} alt="Craftworld Elemmir" draggable={false} />
 
-      {/* Ships (z-index 1 when behind, 3 when in front) */}
-      <Spaceship radius="35vw" tilt={0.28} duration={28} startAngle={0}   size={52} />
-      <Spaceship radius="27vw" tilt={0.23} duration={19} startAngle={185} size={38} />
+      {/* Crimson Hunter circles the craftworld, scaling up on the right to fake depth */}
+      <Spaceship radius="31vw" tilt={0.22} duration={24} startAngle={8} size={180} minScale={0.1} maxScale={1.18} />
 
       {/* Craftworld overlay at z-index 2 — masks just the craftworld body
           so ships disappear behind it in the back half of their orbit */}
