@@ -15,10 +15,6 @@ export default function App() {
       {/* Crimson Hunter circles the craftworld, scaling up on the right to fake depth */}
       <Spaceship radius="31vw" tilt={0.22} duration={24} startAngle={8} size={180} minScale={0.1} maxScale={1.18} />
 
-      {/* Craftworld overlay at z-index 2 — masks just the craftworld body
-          so ships disappear behind it in the back half of their orbit */}
-      <img className="craftworld-overlay" src={craftworldImg} alt="" draggable={false} aria-hidden={true} />
-
       {/* Dome button container — same aspect ratio as the image so % positions are image-relative */}
       <div className="dome-container">
         <button

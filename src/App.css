@@ -22,22 +22,6 @@
   z-index: 0;
 }
 
-/* === Craftworld overlay — same image, masked to craftworld body only ===
-   z-index 2 sits between ship-behind (z-index 1) and ship-front (z-index 3).
-   Ships disappear under this when in the back half of their orbit. */
-.craftworld-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: auto;
-  user-select: none;
-  pointer-events: none;
-  z-index: 2;
-  mask-image: radial-gradient(ellipse 34% 46% at 35% 50%, black 68%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 34% 46% at 35% 50%, black 68%, transparent 100%);
-}
-
 /* === Dome container — matches image aspect ratio so % positions track the image === */
 .dome-container {
   position: absolute;
@@ -53,8 +37,8 @@
 .dome-button {
   position: absolute;
   top: 14%;
-  left: 27.3%;
-  width: 15.4%;
+  left: 29.5%;
+  width: 10%;
   aspect-ratio: 1;
   border-radius: 50%;
   background: transparent;
