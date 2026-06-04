@@ -27,16 +27,55 @@
 }
 
 @keyframes orbit-angle {
-  from { --orbit-angle: 0deg; }
-  to   { --orbit-angle: 360deg; }
+  0%    { --orbit-angle: 0deg; }
+  /* Going-left arc at normal pace; 50% ≡ 180° keeps image-swap in sync */
+  50%   { --orbit-angle: 180deg; }
+  /* Going-right arc: approach the top, gently decelerate */
+  61%   { --orbit-angle: 255deg; }
+  64%   { --orbit-angle: 268deg; }
+  65%   { --orbit-angle: 270deg; }   /* arrive at top */
+  /* ── ~5 s hover pause (20% of 24 s = 4.8 s) ── */
+  85%   { --orbit-angle: 270deg; }   /* leave top */
+  /* gentle re-acceleration back to start */
+  86%   { --orbit-angle: 273deg; }
+  100%  { --orbit-angle: 360deg; }
 }
 
 
 .ship {
   position: absolute;
-  transform: translateX(-50%) translateY(-50%);
   width: 0;
   height: 0;
+  /* Hover wobble — same duration/delay as the orbit so it is window-locked.
+     translate: 0 0 everywhere outside the pause window (65%–85%). */
+  animation-name: ship-hover;
+  animation-duration: var(--orbit-duration, 24s);
+  animation-delay: var(--orbit-delay, 0s);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/*
+  Tiny circular drift only during the orbit pause (65%–85%).
+  Path: x = sin(θ), y = 1−cos(θ)  — 1 px radius circle that starts
+  and ends exactly at (0, 0).  Two full circles fit inside the window.
+  Quarter step = 20% / 8 = 2.5%.
+*/
+@keyframes ship-hover {
+  /*  still before pause  */
+  0%, 65%      { translate:  0px  0px; }
+  /*  circle 1  */
+  67.5%        { translate:  1px  1px; }
+  70%          { translate:  0px  2px; }
+  72.5%        { translate: -1px  1px; }
+  75%          { translate:  0px  0px; }
+  /*  circle 2  */
+  77.5%        { translate:  1px  1px; }
+  80%          { translate:  0px  2px; }
+  82.5%        { translate: -1px  1px; }
+  85%          { translate:  0px  0px; }
+  /*  still after pause  */
+  85.01%, 100% { translate:  0px  0px; }
 }
 
 .ship-visual {
