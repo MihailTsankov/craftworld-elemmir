@@ -9,5 +9,5 @@ description: Something to demonstrate a skill when writing "Greet me"
 - Add skill capabilities here
 
 ## Usage
-When I say "Greet me" respond with the [template](TEMPLATE.md)
+Respond with the [template](TEMPLATE.md)
 
