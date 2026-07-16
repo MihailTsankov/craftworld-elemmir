@@ -2,11 +2,13 @@ import { useState } from "react";
 import centralDome from "../assets/central-dome.png";
 import crystalDomeMainHall from "../assets/crystal-dome-main-hall.png";
 import bansheeTemple from "../assets/banshees_temple_blue_hair_kneel_dome_better_runes.png";
+import autarchChamber from "../assets/autarch-chamber.png";
 import BackToStarshipIcon from "../components/BackToStarshipIcon";
 
-export default function DomePage() {
+export default function CentralDomePage() {
   const [hovered, setHovered] = useState(false);
   const [bansheeHovered, setBansheeHovered] = useState(false);
+  const [autarchHovered, setAutarchHovered] = useState(false);
 
   return (
     <div
@@ -76,6 +78,27 @@ export default function DomePage() {
             background: hovered ? "rgba(100, 180, 255, 0.08)" : "transparent",
           }}
         />
+        {/* Hotspot over the middle-right area (Autarch Chamber) */}
+        <div
+          role="button"
+          tabIndex={0}
+          aria-label="Autarch Chamber"
+          onMouseEnter={() => setAutarchHovered(true)}
+          onMouseLeave={() => setAutarchHovered(false)}
+          onFocus={() => setAutarchHovered(true)}
+          onBlur={() => setAutarchHovered(false)}
+          style={{
+            position: "absolute",
+            left: "74%",
+            top: "40%",
+            width: "12%",
+            height: "20%",
+            cursor: "pointer",
+            borderRadius: "50%",
+            boxShadow: autarchHovered ? "0 0 30px 15px rgba(139, 0, 0, 0.6)" : "none",
+            background: autarchHovered ? "rgba(139, 0, 0, 0.08)" : "transparent",
+          }}
+        />
       </div>
 
       {bansheeHovered && (
@@ -105,6 +128,22 @@ export default function DomePage() {
             width: "560px",
             maxWidth: "calc(100vw - 48px)",
             border: "2px solid #7ecfff",
+            borderRadius: "12px",
+            pointerEvents: "none",
+          }}
+        />
+      )}
+      {autarchHovered && (
+        <img
+          src={autarchChamber}
+          alt="Autarch Chamber"
+          style={{
+            position: "fixed",
+            bottom: "24px",
+            left: "24px",
+            width: "560px",
+            maxWidth: "calc(100vw - 48px)",
+            border: "2px solid #8b0000",
             borderRadius: "12px",
             pointerEvents: "none",
           }}
