@@ -21,6 +21,11 @@ export default function DomeButtons() {
         aria-label="Island Ocean"
         onClick={() => navigate("/island-ocean")}
       />
+      <button
+        className="dome-hover dome-button-small-island"
+        aria-label="Small Island"
+        onClick={() => navigate("/small-island")}
+      />
     </div>
   );
 }

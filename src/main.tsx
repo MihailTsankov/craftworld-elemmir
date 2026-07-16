@@ -6,6 +6,7 @@ import App from './App.tsx'
 import CentralDomePage from './pages/CentralDomePage.tsx'
 import BackSidePage from './pages/BackSidePage.tsx'
 import IslandOceanPage from './pages/IslandOceanPage.tsx'
+import SmallIslandPage from './pages/SmallIslandPage.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -15,6 +16,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/dome" element={<CentralDomePage />} />
         <Route path="/back-side" element={<BackSidePage />} />
         <Route path="/island-ocean" element={<IslandOceanPage />} />
+        <Route path="/small-island" element={<SmallIslandPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
