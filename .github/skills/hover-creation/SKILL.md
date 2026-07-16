@@ -1,6 +1,6 @@
 ---
 name: hover-creation
-description: A skill that demonstrates how to create a hover effect when writing "Create a hover over"
+description: A skill that demonstrates how to create a hover effect when writing "Create an image hover"
 ---
 
 # Hover Creation

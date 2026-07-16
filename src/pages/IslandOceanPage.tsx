@@ -1,10 +1,12 @@
 import { useState } from "react";
-import islandOceanImage from "../assets/ocean-with-a-mountain-structure-better.png";
+import islandOceanImage from "../assets/ocean-with-a-mountain-structure.png";
 import swoopingHawksPreview from "../assets/swooping-hawks.png";
+import lakePreview from "../assets/lake-with-a-mountain-structure.png";
 import BackToStarshipIcon from "../components/BackToStarshipIcon";
 
 export default function IslandOceanPage() {
   const [mountainTopHovered, setMountainTopHovered] = useState(false);
+  const [shipsHovered, setShipsHovered] = useState(false);
 
   return (
     <div
@@ -53,6 +55,28 @@ export default function IslandOceanPage() {
             background: mountainTopHovered ? "rgba(173, 216, 230, 0.08)" : "transparent",
           }}
         />
+
+        {/* Hotspot for Ships */}
+        <div
+          role="button"
+          tabIndex={0}
+          aria-label="Ships"
+          onMouseEnter={() => setShipsHovered(true)}
+          onMouseLeave={() => setShipsHovered(false)}
+          onFocus={() => setShipsHovered(true)}
+          onBlur={() => setShipsHovered(false)}
+          style={{
+            position: "absolute",
+            left: "35%",
+            top: "60%",
+            width: "12%",
+            height: "15%",
+            cursor: "pointer",
+            borderRadius: "50%",
+            boxShadow: shipsHovered ? "0 0 30px 15px rgba(255, 0, 0, 0.6)" : "none",
+            background: shipsHovered ? "rgba(255, 0, 0, 0.08)" : "transparent",
+          }}
+        />
       </div>
 
       {mountainTopHovered && (
@@ -66,6 +90,23 @@ export default function IslandOceanPage() {
             width: "560px",
             maxWidth: "calc(100vw - 48px)",
             border: "2px solid #ADD8E6",
+            borderRadius: "12px",
+            pointerEvents: "none",
+          }}
+        />
+      )}
+
+      {shipsHovered && (
+        <img
+          src={lakePreview}
+          alt="Ships"
+          style={{
+            position: "fixed",
+            bottom: "24px",
+            right: "24px",
+            width: "560px",
+            maxWidth: "calc(100vw - 48px)",
+            border: "2px solid red",
             borderRadius: "12px",
             pointerEvents: "none",
           }}
