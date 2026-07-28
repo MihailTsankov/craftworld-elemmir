@@ -59,16 +59,22 @@
     pointer-events: none;
 }
 
-.dome-hover:hover::before {
+.dome-hover:hover::before,
+.dome-hover:focus-visible::before {
     opacity: 1;
+}
+
+.dome-hover:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.6);
+    outline-offset: 2px;
 }
 
 /* === Clickable middle dome === */
 .dome-button-central {
-    top: 14%;
-    left: 28.6%;
-    width: 12%;
-    aspect-ratio: 1;
+    top: 15.6%;
+    left: 29.1%;
+    width: 11%;
+    height: 6.9%;
 }
 
 .dome-button-central::before {
@@ -79,10 +85,11 @@
 
 /* === Clickable back side of the craftworld (top of image) === */
 .dome-button-back-side {
-    top: 26%;
-    left: 13%;
-    width: 10%;
-    height: 8%;
+    top: 28.4%;
+    left: 15%;
+    width: 6.5%;
+    height: 3.2%;
+    transform: rotate(-15deg);
 
 }
 
@@ -94,10 +101,10 @@
 
 /* === Clickable Island Ocean === */
 .dome-button-island-ocean {
-    top: 22%;
-    left: 39%;
-    width: 14%;
-    aspect-ratio: 1;
+    top: 23%;
+    left: 40.3%;
+    width: 11.2%;
+    height: 6.8%;
 }
 
 .dome-button-island-ocean::before {
@@ -109,9 +116,9 @@
 
 /* === Clickable Small Island === */
 .dome-button-small-island {
-    top: 25.5%;
-    left: 28.2%;
-    width: 5.5%;
+    top: 25.6%;
+    left: 28.6%;
+    width: 4.7%;
     height: 3.5%;
 }
 
@@ -120,6 +127,21 @@
     box-shadow:
         0 0 30px rgba(255, 140, 0, 0.7),
         0 0 60px rgba(255, 140, 0, 0.5);
+}
+
+/* === Clickable Exodite Planet (DEBUG MODE) === */
+.dome-button-exodite-planet {
+    top: 8%;
+    left: 81%;
+    width: 9%;
+    aspect-ratio: 1;
+}
+
+.dome-button-exodite-planet::before {
+    background: radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.35) 0%, rgba(60, 100, 42, 0.25) 45%, transparent 75%);
+    box-shadow:
+        0 0 30px rgba(60, 100, 42, 0.7),
+        0 0 60px rgba(60, 100, 42, 0.5);
 }
 
 

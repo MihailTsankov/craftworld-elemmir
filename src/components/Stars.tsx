@@ -11,9 +11,9 @@ const STARS = [
 export default function Stars() {
   return (
     <>
-      {STARS.map((s, i) => (
+      {STARS.map((s) => (
         <div
-          key={i}
+          key={`${s.top}-${s.left}`}
           className="star"
           style={{
             top: s.top,
