@@ -36,6 +36,12 @@ export default function DomeButtons() {
         aria-label="Exodite Planet"
         onClick={() => navigate("/exodite-planet")}
       />
+      <button
+        type="button"
+        className="dome-hover dome-button-hanging-gardens"
+        aria-label="Hanging Gardens"
+        onClick={() => navigate("/hanging-gardens")}
+      />
     </div>
   );
 }

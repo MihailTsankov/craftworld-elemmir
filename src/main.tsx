@@ -8,6 +8,7 @@ import BackSidePage from './pages/BackSidePage.tsx'
 import IslandOceanPage from './pages/IslandOceanPage.tsx'
 import SmallIslandPage from './pages/SmallIslandPage.tsx'
 import ExoditePlanetPage from './pages/ExoditePlanetPage.tsx'
+import HangingGardensPage from './pages/HangingGardensPage.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -19,6 +20,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/island-ocean" element={<IslandOceanPage />} />
         <Route path="/small-island" element={<SmallIslandPage />} />
         <Route path="/exodite-planet" element={<ExoditePlanetPage />} />
+        <Route path="/hanging-gardens" element={<HangingGardensPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
