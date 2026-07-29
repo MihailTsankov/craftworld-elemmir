@@ -150,7 +150,7 @@
     left: 17.6%;
     width: 2%;
     height: 4.8%;
-    transfrom: rotate(19deg);
+    transform: rotate(19deg);
 }
 
 .dome-button-hanging-gardens::before {
