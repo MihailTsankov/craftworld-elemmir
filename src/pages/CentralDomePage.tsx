@@ -5,6 +5,7 @@ import bansheeTemple from "../assets/central-dome-banshees_temple.png";
 import autarchChamber from "../assets/central-dome-autarch-chamber.png";
 import boneSingers from "../assets/central-dome-bonesingers.png";
 import aeldariStatuePreview from "../assets/central-dome-bonesingers-terrace.png";
+import mainHallEntrancePreview from "../assets/central-dome-main-hall.png";
 import BackToStarshipIcon from "../components/BackToStarshipIcon";
 
 export default function CentralDomePage() {
@@ -13,6 +14,7 @@ export default function CentralDomePage() {
   const [autarchHovered, setAutarchHovered] = useState(false);
   const [boneSingersHovered, setBoneSingersHovered] = useState(false);
   const [aeldariStatueHovered, setAeldariStatueHovered] = useState(false);
+  const [mainHallEntranceHovered, setMainHallEntranceHovered] = useState(false);
 
   return (
     <div
@@ -145,6 +147,27 @@ export default function CentralDomePage() {
             background: aeldariStatueHovered ? "rgba(234, 107, 38, 0.08)" : "transparent",
           }}
         />
+        {/* Hotspot over the center area (Main Hall Entrance) */}
+        <div
+          role="button"
+          tabIndex={0}
+          aria-label="Main Hall Entrance"
+          onMouseEnter={() => setMainHallEntranceHovered(true)}
+          onMouseLeave={() => setMainHallEntranceHovered(false)}
+          onFocus={() => setMainHallEntranceHovered(true)}
+          onBlur={() => setMainHallEntranceHovered(false)}
+          style={{
+            position: "absolute",
+            left: "52%",
+            top: "50%",
+            width: "12%",
+            height: "20%",
+            cursor: "pointer",
+            borderRadius: "50%",
+            boxShadow: mainHallEntranceHovered ? "0 0 30px 15px rgba(141, 231, 243, 0.6)" : "none",
+            background: mainHallEntranceHovered ? "rgba(141, 231, 243, 0.08)" : "transparent",
+          }}
+        />
       </div>
 
       {bansheeHovered && (
@@ -222,6 +245,22 @@ export default function CentralDomePage() {
             width: "560px",
             maxWidth: "calc(100vw - 48px)",
             border: "2px solid #EA6B26",
+            borderRadius: "12px",
+            pointerEvents: "none",
+          }}
+        />
+      )}
+      {mainHallEntranceHovered && (
+        <img
+          src={mainHallEntrancePreview}
+          alt="Main Hall Entrance"
+          style={{
+            position: "fixed",
+            bottom: "24px",
+            left: "24px",
+            width: "560px",
+            maxWidth: "calc(100vw - 48px)",
+            border: "2px solid #8DE7F3",
             borderRadius: "12px",
             pointerEvents: "none",
           }}
