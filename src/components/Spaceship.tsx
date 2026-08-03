@@ -1,6 +1,6 @@
 import "./Spaceship.css";
-import crimsonHunterImg from "../assets/crimson-hunter.png";
-import crimsonHunterReverseImg from "../assets/crimson-hunter-reverse.png";
+import crimsonHunterImg from "../assets/craftworld-elemmir-crimson-hunter.png";
+import crimsonHunterReverseImg from "../assets/craftworld-elemmir-crimson-hunter-reverse.png";
 
 type Props = Readonly<{
   /** CSS length for orbit radius, e.g. "32vw" */

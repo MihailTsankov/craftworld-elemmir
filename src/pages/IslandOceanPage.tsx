@@ -1,7 +1,7 @@
-import islandOceanImage from "../assets/ocean-with-a-mountain-structure.png";
-import swoopingHawksPreview from "../assets/swooping-hawks.png";
-import lakePreview from "../assets/lake-with-a-mountain-structure.png";
-import strikingScorpionsSneakingPreview from "../assets/striking-scorpions-sneaking.png";
+import islandOceanImage from "../assets/ocean-with-mountain.png";
+import swoopingHawksPreview from "../assets/ocean-with-mountain-swooping-hawks.png";
+import lakePreview from "../assets/ocean-with-mountain-lake-closer-look.png";
+import strikingScorpionsSneakingPreview from "../assets/small-island-striking-scorpions-sneaking.png";
 import { ScenePage, SceneFrame } from "../components/ScenePage";
 import HoverHotspot from "../components/HoverHotspot";
 

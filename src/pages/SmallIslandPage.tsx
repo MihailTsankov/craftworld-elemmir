@@ -1,5 +1,5 @@
 import smallIslandDome from "../assets/small-island-dome.png";
-import swoopingHawksPreview from "../assets/swooping-hawks-alternative.png";
+import swoopingHawksPreview from "../assets/small-island-swooping-hawks-alternative.png";
 import { ScenePage, SceneFrame } from "../components/ScenePage";
 import HoverHotspot from "../components/HoverHotspot";
 

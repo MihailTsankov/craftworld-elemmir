@@ -1,7 +1,7 @@
 import { useState } from "react";
 import hangingGardensImage from "../assets/hanging-gardens.png";
-import fireDragonsPreview from "../assets/fire_dragons.jpeg";
-import fireDragonsFinalBattlePreview from "../assets/fire-dragons-fighting.png";
+import fireDragonsPreview from "../assets/hanging-gardens-fire-dragons.jpeg";
+import fireDragonsFinalBattlePreview from "../assets/hanging-gardens-fire-dragons-fighting.png";
 import BackToStarshipIcon from "../components/BackToStarshipIcon";
 
 export default function HangingGardensPage() {

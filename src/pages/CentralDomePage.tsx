@@ -1,14 +1,16 @@
 import { useState } from "react";
 import centralDome from "../assets/central-dome.png";
-import crystalDomeMainHall from "../assets/crystal-dome-main-hall.png";
-import bansheeTemple from "../assets/banshees_temple_blue_hair_kneel_dome_better_runes.png";
-import autarchChamber from "../assets/autarch-chamber.png";
+import crystalDomeMainHall from "../assets/central-dome-crystal-dome-main-hall.png";
+import bansheeTemple from "../assets/central-dome-banshees_temple.png";
+import autarchChamber from "../assets/central-dome-autarch-chamber.png";
+import boneSingers from "../assets/central-dome-bonesingers.png";
 import BackToStarshipIcon from "../components/BackToStarshipIcon";
 
 export default function CentralDomePage() {
   const [hovered, setHovered] = useState(false);
   const [bansheeHovered, setBansheeHovered] = useState(false);
   const [autarchHovered, setAutarchHovered] = useState(false);
+  const [boneSingersHovered, setBoneSingersHovered] = useState(false);
 
   return (
     <div
@@ -99,6 +101,27 @@ export default function CentralDomePage() {
             background: autarchHovered ? "rgba(139, 0, 0, 0.08)" : "transparent",
           }}
         />
+        {/* Hotspot over the lower-left area (Bone Singers Terrace) */}
+        <div
+          role="button"
+          tabIndex={0}
+          aria-label="Bone Singers Terrace"
+          onMouseEnter={() => setBoneSingersHovered(true)}
+          onMouseLeave={() => setBoneSingersHovered(false)}
+          onFocus={() => setBoneSingersHovered(true)}
+          onBlur={() => setBoneSingersHovered(false)}
+          style={{
+            position: "absolute",
+            left: "60%",
+            top: "80%",
+            width: "12%",
+            height: "20%",
+            cursor: "pointer",
+            borderRadius: "50%",
+            boxShadow: boneSingersHovered ? "0 0 30px 15px rgba(255, 0, 255, 0.6)" : "none",
+            background: boneSingersHovered ? "rgba(255, 0, 255, 0.08)" : "transparent",
+          }}
+        />
       </div>
 
       {bansheeHovered && (
@@ -144,6 +167,22 @@ export default function CentralDomePage() {
             width: "560px",
             maxWidth: "calc(100vw - 48px)",
             border: "2px solid #8b0000",
+            borderRadius: "12px",
+            pointerEvents: "none",
+          }}
+        />
+      )}
+      {boneSingersHovered && (
+        <img
+          src={boneSingers}
+          alt="Bone Singers Terrace"
+          style={{
+            position: "fixed",
+            bottom: "24px",
+            right: "24px",
+            width: "560px",
+            maxWidth: "calc(100vw - 48px)",
+            border: "2px solid #ff00ff",
             borderRadius: "12px",
             pointerEvents: "none",
           }}
