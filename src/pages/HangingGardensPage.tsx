@@ -191,8 +191,8 @@ export default function HangingGardensPage() {
           alt="Bathing Falls"
           style={{
             position: "fixed",
-            top: "24px",
-            left: "24px",
+            bottom: "24px",
+            right: "24px",
             width: "560px",
             maxWidth: "calc(100vw - 48px)",
             border: "2px solid #FD70C5",
