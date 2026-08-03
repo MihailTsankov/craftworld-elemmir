@@ -4,6 +4,7 @@ import crystalDomeMainHall from "../assets/central-dome-crystal-dome-main-hall.p
 import bansheeTemple from "../assets/central-dome-banshees_temple.png";
 import autarchChamber from "../assets/central-dome-autarch-chamber.png";
 import boneSingers from "../assets/central-dome-bonesingers.png";
+import aeldariStatuePreview from "../assets/central-dome-bonesingers-terrace.png";
 import BackToStarshipIcon from "../components/BackToStarshipIcon";
 
 export default function CentralDomePage() {
@@ -11,6 +12,7 @@ export default function CentralDomePage() {
   const [bansheeHovered, setBansheeHovered] = useState(false);
   const [autarchHovered, setAutarchHovered] = useState(false);
   const [boneSingersHovered, setBoneSingersHovered] = useState(false);
+  const [aeldariStatueHovered, setAeldariStatueHovered] = useState(false);
 
   return (
     <div
@@ -93,8 +95,8 @@ export default function CentralDomePage() {
             position: "absolute",
             left: "74%",
             top: "40%",
-            width: "12%",
-            height: "20%",
+            width: "8%",
+            height: "14%",
             cursor: "pointer",
             borderRadius: "50%",
             boxShadow: autarchHovered ? "0 0 30px 15px rgba(139, 0, 0, 0.6)" : "none",
@@ -120,6 +122,27 @@ export default function CentralDomePage() {
             borderRadius: "50%",
             boxShadow: boneSingersHovered ? "0 0 30px 15px rgba(255, 0, 255, 0.6)" : "none",
             background: boneSingersHovered ? "rgba(255, 0, 255, 0.08)" : "transparent",
+          }}
+        />
+        {/* Hotspot over the lower-left area (Aeldari Statue) */}
+        <div
+          role="button"
+          tabIndex={0}
+          aria-label="Aeldari Statue"
+          onMouseEnter={() => setAeldariStatueHovered(true)}
+          onMouseLeave={() => setAeldariStatueHovered(false)}
+          onFocus={() => setAeldariStatueHovered(true)}
+          onBlur={() => setAeldariStatueHovered(false)}
+          style={{
+            position: "absolute",
+            left: "6%",
+            top: "57%",
+            width: "12%",
+            height: "20%",
+            cursor: "pointer",
+            borderRadius: "50%",
+            boxShadow: aeldariStatueHovered ? "0 0 30px 15px rgba(234, 107, 38, 0.6)" : "none",
+            background: aeldariStatueHovered ? "rgba(234, 107, 38, 0.08)" : "transparent",
           }}
         />
       </div>
@@ -183,6 +206,22 @@ export default function CentralDomePage() {
             width: "560px",
             maxWidth: "calc(100vw - 48px)",
             border: "2px solid #ff00ff",
+            borderRadius: "12px",
+            pointerEvents: "none",
+          }}
+        />
+      )}
+      {aeldariStatueHovered && (
+        <img
+          src={aeldariStatuePreview}
+          alt="Aeldari Statue"
+          style={{
+            position: "fixed",
+            bottom: "24px",
+            right: "24px",
+            width: "560px",
+            maxWidth: "calc(100vw - 48px)",
+            border: "2px solid #EA6B26",
             borderRadius: "12px",
             pointerEvents: "none",
           }}
