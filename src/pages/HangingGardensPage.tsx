@@ -2,11 +2,15 @@ import { useState } from "react";
 import hangingGardensImage from "../assets/hanging-gardens.png";
 import fireDragonsPreview from "../assets/hanging-gardens-fire-dragons.jpeg";
 import fireDragonsFinalBattlePreview from "../assets/hanging-gardens-fire-dragons-fighting.png";
+import rangersTemplePreview from "../assets/hanging-gardens-a-temple-rangers.png";
+import bathingFallsPreview from "../assets/hanging-gardens-bathing-in-the-pools.png";
 import BackToStarshipIcon from "../components/BackToStarshipIcon";
 
 export default function HangingGardensPage() {
   const [fireDragonsHovered, setFireDragonsHovered] = useState(false);
   const [fireDragonsFinalBattleHovered, setFireDragonsFinalBattleHovered] = useState(false);
+  const [rangersTempleHovered, setRangersTempleHovered] = useState(false);
+  const [bathingFallsHovered, setBathingFallsHovered] = useState(false);
   return (
     <div
       style={{
@@ -80,6 +84,54 @@ export default function HangingGardensPage() {
             background: fireDragonsFinalBattleHovered ? "rgba(161, 71, 18, 0.08)" : "transparent",
           }}
         />
+
+        {/* Hotspot for Rangers Temple */}
+        <div
+          role="button"
+          tabIndex={0}
+          aria-label="Rangers Temple"
+          onMouseEnter={() => setRangersTempleHovered(true)}
+          onMouseLeave={() => setRangersTempleHovered(false)}
+          onFocus={() => setRangersTempleHovered(true)}
+          onBlur={() => setRangersTempleHovered(false)}
+          style={{
+            position: "absolute",
+            left: "75%",
+            top: "37%",
+            width: "12%",
+            height: "20%",
+            cursor: "pointer",
+            borderRadius: "50%",
+            boxShadow: rangersTempleHovered
+              ? "0 0 30px 15px rgba(37, 66, 104, 0.6)"
+              : "none",
+            background: rangersTempleHovered ? "rgba(37, 66, 104, 0.08)" : "transparent",
+          }}
+        />
+
+        {/* Hotspot for Bathing Falls */}
+        <div
+          role="button"
+          tabIndex={0}
+          aria-label="Bathing Falls"
+          onMouseEnter={() => setBathingFallsHovered(true)}
+          onMouseLeave={() => setBathingFallsHovered(false)}
+          onFocus={() => setBathingFallsHovered(true)}
+          onBlur={() => setBathingFallsHovered(false)}
+          style={{
+            position: "absolute",
+            left: "8%",
+            top: "57%",
+            width: "15%",
+            height: "25%",
+            cursor: "pointer",
+            borderRadius: "50%",
+            boxShadow: bathingFallsHovered
+              ? "0 0 30px 15px rgba(253, 112, 197, 0.6)"
+              : "none",
+            background: bathingFallsHovered ? "rgba(253, 112, 197, 0.08)" : "transparent",
+          }}
+        />
       </div>
 
       {fireDragonsHovered && (
@@ -110,6 +162,40 @@ export default function HangingGardensPage() {
             width: "560px",
             maxWidth: "calc(100vw - 48px)",
             border: "2px solid #A14712",
+            borderRadius: "12px",
+            pointerEvents: "none",
+          }}
+        />
+      )}
+
+      {rangersTempleHovered && (
+        <img
+          src={rangersTemplePreview}
+          alt="Rangers Temple"
+          style={{
+            position: "fixed",
+            bottom: "24px",
+            left: "24px",
+            width: "560px",
+            maxWidth: "calc(100vw - 48px)",
+            border: "2px solid #254268",
+            borderRadius: "12px",
+            pointerEvents: "none",
+          }}
+        />
+      )}
+
+      {bathingFallsHovered && (
+        <img
+          src={bathingFallsPreview}
+          alt="Bathing Falls"
+          style={{
+            position: "fixed",
+            top: "24px",
+            left: "24px",
+            width: "560px",
+            maxWidth: "calc(100vw - 48px)",
+            border: "2px solid #FD70C5",
             borderRadius: "12px",
             pointerEvents: "none",
           }}
