@@ -11,42 +11,21 @@ do **not** show a preview image on hover — they are invisible clickable zones
 (like the existing `.dome-button`) that lead to a new page similar to
 `src/pages/CentralDomePage.tsx`.
 
-## Prompt the User First
+## Parse the Prompt First
 
-BEFORE writing any code, you MUST call `ask_questions` with **three** freeform
-questions (no `options` arrays — they must all accept free text):
+Before asking any questions, extract the following from the user's initial prompt
+(if provided):
 
-```
-ask_questions([
-  {
-    header: "hover_location",
-    question: "Where on the main page image should the hover zone be? You MUST provide exact percentages from the top-left of the image (left %, top %). Vague descriptions will not be accepted.",
-    allowFreeformInput: true
-  },
-  {
-    header: "hover_size",
-    question: "What should the size of the hover zone be? Provide exact percentages for width and height (e.g. 'width: 10%, height: 8%'). You can also use 'aspect-ratio: 1' for a square zone.",
-    allowFreeformInput: true
-  },
-  {
-    header: "hover_color",
-    question: "What color should the hover glow effect be? Provide a CSS color value or description (e.g. 'purple', '#b48cff', 'rgba(180, 140, 255, 0.7)'). This will be used for the radial gradient and box-shadow glow.",
-    allowFreeformInput: true
-  },
-  {
-    header: "page_image",
-    question: "Which image should be displayed on the new page? Provide a filename that exists (or will be added) under src/assets/ (e.g. 'autarch-chamber.png').",
-    allowFreeformInput: true
-  },
-  {
-    header: "page_name",
-    question: "What should the new page be called? Give a human-readable name (e.g. 'Autarch Chamber'). It will be used for the component name, the file name, the route path, and the aria-label.",
-    allowFreeformInput: true
-  }
-])
-```
+- **hover-location**: Exact percentages `left: X%`, `top: Y%`.
+- **hover-size**: Exact percentages `width: X%`, `height: Y%` (or `aspect-ratio: 1`).
+- **hover-color**: CSS color value for the glow.
+- **page-name**: Human-readable name for the new page (e.g., "Autarch Chamber").
+- **page-image**: Filename under `src/assets/` (e.g., `autarch-chamber.png`).
 
-From the answers derive:
+**Only ask (via `ask_user`) for any information not provided in the prompt.**
+
+If the user provides vague descriptions (e.g., "middle-left") instead of exact
+percentages for location, ask for clarification with exact % values.
 
 - **ComponentName** = PascalCase of `page_name` + `Page` (e.g. `AutarchChamberPage`).
 - **FileName** = `src/pages/<ComponentName>.tsx`.
@@ -213,8 +192,8 @@ import <ComponentName> from './pages/<ComponentName>.tsx'
 
 ## Acceptance Checklist
 
-- [ ] User was prompted via a single `ask_questions` call with **five** freeform
-  questions: `hover_location` (exact % coordinates required), `hover_size` (exact % width/height), `hover_color` (CSS color for glow), `page_image`, and `page_name`.
+- [ ] Parsed user's initial prompt for: hover-location, hover-size, hover-color, page-image, and page-name.
+- [ ] Only asked (via `ask_user`) for information **not** provided in the prompt.
 - [ ] The new hotspot is a `<button>` placed **inside** `.dome-container` in
   `src/App.tsx`, uses `navigate()` from `react-router-dom`, and has **two classes**:
   `dome-hover` (shared) and `dome-button-<slug>` (specific).
@@ -226,7 +205,7 @@ import <ComponentName> from './pages/<ComponentName>.tsx'
 - [ ] `.dome-button-<slug>::before` only contains **`background` (gradient) and
   `box-shadow`** — no repeated properties already set by `.dome-hover::before`.
   No separate `:hover::before` rule — `.dome-hover:hover::before` already handles it.
-- [ ] Glow color is derived from the user's `hover_color` answer — **not** hardcoded
+- [ ] Glow color is derived from the user's answer — **not** hardcoded
   and **not** `filter: drop-shadow` (which has no effect on transparent elements).
 - [ ] Hotspot position/size in `src/App.css` uses **only percentages** so it tracks
   the background image on every screen size.

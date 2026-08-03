@@ -11,30 +11,18 @@ image appears with a colored border and a soft glow in the same color.
 
 ## Usage
 
-BEFORE writing any code, you MUST prompt the user for the highlight color
-using the `ask_questions` tool. The question must be a **freeform color
-input** (no preset `options`) so it behaves like a color picker and accepts
-any CSS color the user types:
+Parse the user's initial prompt for these parameters. Only ask (via `ask_user`)
+for any information **not** provided:
 
-```
-ask_questions([
-  {
-    header: "hover_color",
-    question: "What color should the hover glow and pop-up border use? (Enter any CSS color, e.g. #7ecfff, rgb(180,100,255), or a named color)",
-    allowFreeformInput: true
-    // IMPORTANT: do NOT provide an `options` array — this must be freeform.
-  }
-])
-```
+- **color**: Highlight color for the glow and pop-up border (CSS color, e.g., `magenta`, `#7ecfff`, or `rgb(180,100,255)`).
+- **page**: Which page/component file to edit (e.g., `CentralDomePage.tsx`).
+- **hotspot-location**: Approximate position as `top: X%`, `left: Y%` (if not given, choose sensible values and let the user know they can tweak them).
+- **preview-image**: Which image to show on hover (filename under `src/assets/`, e.g., `central-dome-bonesingers.png`).
+- **label**: Accessible label for the hotspot (e.g., "Foo Building").
+- **background-image** (optional): Which background image the hotspot sits on top of (usually obvious from the page file).
+- **popup-side** (optional): Which side the popup should appear (`left` or `right`; defaults to alternating with existing hovers).
 
-Also confirm (or ask, if not obvious from the request):
-
-- Which page/component file to edit.
-- Which background image the hotspot sits on top of.
-- Which preview image to show on hover (path under `src/assets/`).
-- Approximate hotspot location on the image (if not given, choose sensible
-  percentage values and tell the user they can tweak them).
-- An accessible label for the hotspot (e.g. "Foo Building").
+For any missing information, use `ask_user` to prompt the user. **Do not** ask for information already provided in the initial prompt.
 
 ## Implementation Recipe
 
@@ -131,9 +119,8 @@ Replace `<BORDER_COLOR>` with `C`.
 
 ## Acceptance Checklist
 
-- [ ] User was prompted for a color via a freeform `ask_questions` call (no `options`).
-- [ ] User was asked where the pop-up should go.
-- [ ] User was asked which image should be shown in the pop-up.
+- [ ] Parsed user's initial prompt for: color, page, hotspot-location (top/left %), preview-image, label, and background-image.
+- [ ] Only asked (via `ask_user`) for information **not** provided in the prompt.
 - [ ] `useState` and the preview image are imported.
 - [ ] Hotspot is inside a `position: relative` wrapper over the background image, uses percentage coordinates, and is keyboard-accessible (`role="button"`, `tabIndex={0}`, `aria-label`, `onFocus`/`onBlur`).
 - [ ] Glow (`boxShadow` + translucent `background`) only shows while hovered/focused, using the derived rgba glow color.

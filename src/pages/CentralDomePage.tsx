@@ -179,7 +179,7 @@ export default function CentralDomePage() {
           style={{
             position: "fixed",
             bottom: "24px",
-            right: "24px",
+            left: "24px",
             width: "560px",
             maxWidth: "calc(100vw - 48px)",
             border: "2px solid #ff00ff",
