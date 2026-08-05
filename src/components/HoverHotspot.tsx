@@ -7,17 +7,18 @@ interface Props {
   readonly top: string;
   readonly width: string;
   readonly height: string;
-  readonly glowColor: string;
-  readonly hoverBg: string;
+  /** Any CSS color value (hex, named, rgb…). Used for the glow, background tint, and preview border. */
+  readonly color: string;
   readonly previewSrc?: string;
   readonly previewAlt?: string;
   readonly previewSide?: "left" | "right";
-  readonly previewBorderColor?: string;
 }
 
 /**
  * An accessible, circular hover zone that shows a glow effect and
  * an optional cinematic preview image while focused or hovered.
+ * Pass a single `color` — the component derives glow opacity (60 %)
+ * and background tint (8 %) automatically via color-mix.
  */
 export default function HoverHotspot({
   label,
@@ -25,12 +26,10 @@ export default function HoverHotspot({
   top,
   width,
   height,
-  glowColor,
-  hoverBg,
+  color,
   previewSrc,
   previewAlt,
   previewSide = "left",
-  previewBorderColor,
 }: Props) {
   const [hovered, setHovered] = useState(false);
 
@@ -46,8 +45,7 @@ export default function HoverHotspot({
             top,
             width,
             height,
-            "--hotspot-glow": glowColor,
-            "--hotspot-bg": hoverBg,
+            "--hotspot-color": color,
           } as React.CSSProperties
         }
         onMouseEnter={() => setHovered(true)}
@@ -61,9 +59,7 @@ export default function HoverHotspot({
           alt={previewAlt ?? label}
           draggable={false}
           className={`hotspot-preview hotspot-preview--${previewSide}`}
-          style={
-            { "--preview-border": previewBorderColor ?? glowColor } as React.CSSProperties
-          }
+          style={{ "--hotspot-color": color } as React.CSSProperties}
         />
       )}
     </>

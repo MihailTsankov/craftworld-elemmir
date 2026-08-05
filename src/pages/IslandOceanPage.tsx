@@ -12,29 +12,23 @@ export default function IslandOceanPage() {
         <HoverHotspot
           label="The top of the mountain structure"
           left="53%" top="37%" width="15%" height="15%"
-          glowColor="rgba(173, 216, 230, 0.6)"
-          hoverBg="rgba(173, 216, 230, 0.08)"
+          color="#ADD8E6"
           previewSrc={swoopingHawksPreview}
           previewSide="left"
-          previewBorderColor="#ADD8E6"
         />
         <HoverHotspot
           label="Ships"
           left="35%" top="60%" width="12%" height="15%"
-          glowColor="rgba(255, 0, 0, 0.6)"
-          hoverBg="rgba(255, 0, 0, 0.08)"
+          color="red"
           previewSrc={lakePreview}
           previewSide="right"
-          previewBorderColor="red"
         />
         <HoverHotspot
           label="Striking Scorpions sneaking"
           left="70%" top="70%" width="12%" height="15%"
-          glowColor="rgba(144, 238, 144, 0.6)"
-          hoverBg="rgba(144, 238, 144, 0.08)"
+          color="green"
           previewSrc={strikingScorpionsSneakingPreview}
           previewSide="left"
-          previewBorderColor="green"
         />
       </SceneFrame>
     </ScenePage>

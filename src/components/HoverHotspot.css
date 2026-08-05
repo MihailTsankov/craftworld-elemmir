@@ -12,12 +12,12 @@
 
 .hotspot:hover,
 .hotspot:focus-visible {
-  box-shadow: 0 0 30px 15px var(--hotspot-glow);
-  background: var(--hotspot-bg);
+  box-shadow: 0 0 30px 15px color-mix(in srgb, var(--hotspot-color) 60%, transparent);
+  background: color-mix(in srgb, var(--hotspot-color) 8%, transparent);
 }
 
 .hotspot:focus-visible {
-  outline: 2px solid var(--hotspot-glow);
+  outline: 2px solid var(--hotspot-color);
   outline-offset: 2px;
 }
 
@@ -27,7 +27,7 @@
   bottom: 24px;
   width: 560px;
   max-width: calc(100vw - 48px);
-  border: 2px solid var(--preview-border, #fff);
+  border: 2px solid var(--hotspot-color);
   border-radius: 12px;
   pointer-events: none;
   z-index: 100;

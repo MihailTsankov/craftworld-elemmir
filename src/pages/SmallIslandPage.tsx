@@ -10,11 +10,9 @@ export default function SmallIslandPage() {
         <HoverHotspot
           label="Swooping Hawks hunting"
           left="30%" top="45%" width="12%" height="20%"
-          glowColor="rgba(255, 165, 0, 0.6)"
-          hoverBg="rgba(255, 165, 0, 0.08)"
+          color="orange"
           previewSrc={swoopingHawksPreview}
           previewSide="right"
-          previewBorderColor="orange"
         />
       </SceneFrame>
     </ScenePage>

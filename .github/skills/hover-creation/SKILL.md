@@ -9,6 +9,10 @@ Add an interactive hover hotspot over a region of an image on a React page.
 While the user hovers (or keyboard-focuses) the hotspot, a preview pop-up
 image appears with a colored border and a soft glow in the same color.
 
+All of this behaviour already lives in the shared `HoverHotspot` component —
+**never hand-roll `useState` + inline styles.** Adding a hover means adding one
+entry to a page's `hotspots` array.
+
 ## Usage
 
 Parse the user's initial prompt for these parameters. Only ask (via `ask_user`)
@@ -24,106 +28,89 @@ for any information **not** provided:
 
 For any missing information, use `ask_user` to prompt the user. **Do not** ask for information already provided in the initial prompt.
 
+## Shared Components
+
+| Component | File | Purpose |
+| --- | --- | --- |
+| `ScenePage` | `src/components/ScenePage.tsx` | Full-screen black page shell + `BackToStarshipIcon` |
+| `SceneFrame` | `src/components/ScenePage.tsx` | Radial-masked image container; hotspot `%` coords are relative to it |
+| `HoverHotspot` | `src/components/HoverHotspot.tsx` | Accessible `<button>` hotspot + hover preview pop-up |
+
+### Colors are derived — pass only one
+
+`HoverHotspot` takes a **single `color` prop**. Do **not** compute rgba
+variants. `HoverHotspot.css` derives them via `color-mix`:
+
+- glow (`box-shadow`) = `color` at 60%
+- hotspot tint (`background`) = `color` at 8%
+- preview border = `color` at 100%
+
+This keeps the glow and the border permanently in sync. Any CSS color works
+(hex, named, `rgb()`), so pass the user's value straight through.
+
 ## Implementation Recipe
 
-Given the answered color `C`, derive:
-
-- **Border color** = `C` (used for the 2px solid pop-up border).
-- **Glow color** = same color at ~60% alpha for `boxShadow`, and ~8% alpha for the hotspot `background`.
-  - If `C` is `#rrggbb` or `#rgb`, convert to `rgba(r, g, b, 0.6)` and `rgba(r, g, b, 0.08)`.
-  - If `C` is already `rgb(r,g,b)`, rewrite as `rgba(r,g,b,0.6)` / `rgba(r,g,b,0.08)`.
-  - Otherwise (named color) fall back to using `C` for the border and a reasonable rgba approximation for the glow.
-
-Then edit the target page component to add these three pieces.
-
-### 1. State + imports
-
-At the top of the component, add a boolean state flag named after the hotspot,
-e.g. for a hotspot called "Foo":
+### 1. Import the preview image
 
 ```tsx
-import { useState } from "react";
 import fooPreview from "../assets/foo.png";
-
-// ...inside the component:
-const [fooHovered, setFooHovered] = useState(false);
 ```
 
-### 2. Hotspot element
+No `useState` import is needed — hover state is internal to `HoverHotspot`.
 
-The hotspot must live inside a `position: relative` wrapper that also
-contains the background `<img>`. If the page does not already have such a
-wrapper, create one:
+### 2. Add an entry to the page's `hotspots` array
+
+Each page declares its hotspots as data above the component:
 
 ```tsx
-<div style={{ position: "relative", display: "inline-block" }}>
-  <img
-    src={background}
-    alt="..."
-    style={{ display: "block", maxWidth: "100%", maxHeight: "100vh" }}
-  />
-
-  {/* Hotspot for Foo */}
-  <div
-    role="button"
-    tabIndex={0}
-    aria-label="Foo"
-    onMouseEnter={() => setFooHovered(true)}
-    onMouseLeave={() => setFooHovered(false)}
-    onFocus={() => setFooHovered(true)}
-    onBlur={() => setFooHovered(false)}
-    style={{
-      position: "absolute",
-      left: "48%",   // tweak
-      top: "30%",    // tweak
-      width: "12%",  // tweak
-      height: "20%", // tweak
-      cursor: "pointer",
-      borderRadius: "50%",
-      boxShadow: fooHovered ? "0 0 30px 15px <GLOW_60>" : "none",
-      background: fooHovered ? "<GLOW_08>" : "transparent",
-    }}
-  />
-</div>
+const hotspots = [
+  // ...existing hotspots...
+  {
+    label: "Foo",
+    left: "48%", top: "30%", width: "12%", height: "20%",
+    color: "#7ecfff",
+    previewSrc: fooPreview, previewSide: "right" as const,
+  },
+];
 ```
 
-Replace `<GLOW_60>` and `<GLOW_08>` with the rgba values derived above.
-Coordinates are percentages so the hotspot scales with the image.
+Coordinates are percentages so the hotspot scales with the image. Alternate
+`previewSide` between `"left"` and `"right"` relative to the existing hotspots
+so previews don't overlap.
 
-### 3. Preview pop-up
+### 3. Nothing else to do
 
-At the end of the page container (a sibling of the image wrapper), add a
-conditional fixed-position preview image. Alternate between bottom-left and
-bottom-right when the page has multiple hotspots so previews don't overlap:
+The page already renders every entry:
 
 ```tsx
-{fooHovered && (
-  <img
-    src={fooPreview}
-    alt="Foo"
-    style={{
-      position: "fixed",
-      bottom: "24px",
-      right: "24px", // or left: "24px" for the other side
-      width: "560px",
-      maxWidth: "calc(100vw - 48px)",
-      border: "2px solid <BORDER_COLOR>",
-      borderRadius: "12px",
-      pointerEvents: "none",
-    }}
-  />
-)}
+export default function FooPage() {
+  return (
+    <ScenePage>
+      <SceneFrame src={background} alt="Foo Scene">
+        {hotspots.map((h) => (
+          <HoverHotspot key={h.label} {...h} />
+        ))}
+      </SceneFrame>
+    </ScenePage>
+  );
+}
 ```
 
-Replace `<BORDER_COLOR>` with `C`.
+### If the page has not been migrated yet
+
+If the target page still uses the old pattern (per-hotspot `useState`, inline
+`position`/`boxShadow`/`background` styles, and conditional `<img>` previews),
+**convert the whole page first**, then add the new hotspot. Reference
+`src/pages/CentralDomePage.tsx` for the target shape.
 
 ## Acceptance Checklist
 
 - [ ] Parsed user's initial prompt for: color, page, hotspot-location (top/left %), preview-image, label, and background-image.
 - [ ] Only asked (via `ask_user`) for information **not** provided in the prompt.
-- [ ] `useState` and the preview image are imported.
-- [ ] Hotspot is inside a `position: relative` wrapper over the background image, uses percentage coordinates, and is keyboard-accessible (`role="button"`, `tabIndex={0}`, `aria-label`, `onFocus`/`onBlur`).
-- [ ] Glow (`boxShadow` + translucent `background`) only shows while hovered/focused, using the derived rgba glow color.
-- [ ] Pop-up `<img>` is fixed-position, has `pointerEvents: "none"`, `borderRadius: 12px`, `width: 560px` with `maxWidth: calc(100vw - 48px)`, and a 2px solid border in the chosen color.
-- [ ] TypeScript compiles with no new errors.
-
+- [ ] The hover was added as a **data entry** in the page's `hotspots` array — no new `useState`, no inline styles, no hand-written preview `<img>`.
+- [ ] A **single `color`** prop was passed. No manually derived `rgba(...)` glow/tint values, and no `glowColor` / `hoverBg` / `previewBorderColor` props (these no longer exist).
+- [ ] The preview image is imported from `src/assets/` and the file exists (if it does not, tell the user to add it).
+- [ ] Position and size use **percentages** so the hotspot tracks the image at any screen size.
+- [ ] `previewSide` alternates with neighbouring hotspots so pop-ups don't overlap.
+- [ ] The page renders hotspots via `<ScenePage>` → `<SceneFrame>` → `hotspots.map(...)`; if it did not already, it was migrated first.
+- [ ] TypeScript compiles with no new errors (`npx tsc --noEmit`).

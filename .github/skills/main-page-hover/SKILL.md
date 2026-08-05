@@ -8,8 +8,8 @@ description: A skill that creates a new clickable hover zone on the main Craftwo
 Add a new clickable hotspot on the main page (`src/App.tsx`) that navigates to
 a **brand new page**. Unlike the generic `hover-creation` skill, these hovers
 do **not** show a preview image on hover — they are invisible clickable zones
-(like the existing `.dome-button`) that lead to a new page similar to
-`src/pages/CentralDomePage.tsx`.
+(like the existing `.dome-button`) that lead to a new page built from the
+shared `ScenePage` / `SceneFrame` components (see `src/pages/BackSidePage.tsx`).
 
 ## Parse the Prompt First
 
@@ -141,44 +141,29 @@ Do **not** add a `.dome-button-<slug>:hover::before` rule — the shared
 
 ### 3. Create the new page `src/pages/<ComponentName>.tsx`
 
-Model it after `CentralDomePage.tsx` but simpler — it just centers the chosen
-image with the same radial mask, and includes the `BackToStarshipIcon`:
+Use the shared `ScenePage` / `SceneFrame` components — they already provide the
+black full-screen shell, the `BackToStarshipIcon`, and the radial-masked
+centered image. **Do not hand-write those wrapper `<div>`s or inline styles.**
 
 ```tsx
 import <slug>Image from "../assets/<page_image>";
-import BackToStarshipIcon from "../components/BackToStarshipIcon";
+import { ScenePage, SceneFrame } from "../components/ScenePage";
 
 export default function <ComponentName>() {
   return (
-    <div
-      style={{
-        width: "100%",
-        height: "100%",
-        background: "#000",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        position: "relative",
-      }}
-    >
-      <BackToStarshipIcon />
-      <div style={{ position: "relative", display: "inline-block" }}>
-        <img
-          src={<slug>Image}
-          alt="<AriaLabel>"
-          style={{
-            display: "block",
-            maxWidth: "100%",
-            maxHeight: "100vh",
-            maskImage: "radial-gradient(ellipse at center, black 50%, transparent 75%)",
-            WebkitMaskImage: "radial-gradient(ellipse at center, black 50%, transparent 75%)",
-          }}
-        />
-      </div>
-    </div>
+    <ScenePage>
+      <SceneFrame src={<slug>Image} alt="<AriaLabel>" />
+    </ScenePage>
   );
 }
 ```
+
+See `src/pages/BackSidePage.tsx` for a minimal live example.
+
+If the new page should also have hover hotspots on it, follow the
+`hover-creation` skill: declare a `hotspots` array and render
+`{hotspots.map((h) => <HoverHotspot key={h.label} {...h} />)}` inside
+`<SceneFrame>`.
 
 ### 4. Register the route in `src/main.tsx`
 
@@ -209,9 +194,10 @@ import <ComponentName> from './pages/<ComponentName>.tsx'
   and **not** `filter: drop-shadow` (which has no effect on transparent elements).
 - [ ] Hotspot position/size in `src/App.css` uses **only percentages** so it tracks
   the background image on every screen size.
-- [ ] A new page component was created at `src/pages/<ComponentName>.tsx`
-  following the `CentralDomePage.tsx` layout (black background, centered
-  masked image, `BackToStarshipIcon`).
+- [ ] A new page component was created at `src/pages/<ComponentName>.tsx` using
+  the shared `<ScenePage>` + `<SceneFrame>` components — **no** hand-written
+  wrapper `<div>`s, inline `maskImage` styles, or direct `BackToStarshipIcon`
+  import (`ScenePage` already renders it).
 - [ ] The page image is imported from `src/assets/` and the file exists (if
   it does not, tell the user to add it).
 - [ ] A new `<Route>` was registered in `src/main.tsx`.
