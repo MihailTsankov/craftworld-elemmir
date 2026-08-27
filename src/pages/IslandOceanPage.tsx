@@ -15,6 +15,7 @@ export default function IslandOceanPage() {
           color="#ADD8E6"
           previewSrc={swoopingHawksPreview}
           previewSide="left"
+          text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur."
         />
         <HoverHotspot
           label="Ships"
@@ -22,6 +23,7 @@ export default function IslandOceanPage() {
           color="red"
           previewSrc={lakePreview}
           previewSide="right"
+          text="Vestibulum id ligula porta felis euismod semper. Cras justo odio, dapibus ac facilisis in, egestas eget quam."
         />
         <HoverHotspot
           label="Striking Scorpions sneaking"
@@ -29,6 +31,7 @@ export default function IslandOceanPage() {
           color="green"
           previewSrc={strikingScorpionsSneakingPreview}
           previewSide="left"
+          text="Donec id elit non mi porta gravida at eget metus. Curabitur blandit tempus porttitor."
         />
       </SceneFrame>
     </ScenePage>

@@ -13,6 +13,7 @@ export default function SmallIslandPage() {
           color="orange"
           previewSrc={swoopingHawksPreview}
           previewSide="right"
+          text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh."
         />
       </SceneFrame>
     </ScenePage>

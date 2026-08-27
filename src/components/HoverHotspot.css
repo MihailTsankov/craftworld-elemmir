@@ -22,20 +22,32 @@
 }
 
 /* ── Preview card (fixed bottom corner) ─────────────────────────────── */
-.hotspot-preview {
+.hotspot-card {
   position: fixed;
   bottom: 24px;
   width: 560px;
   max-width: calc(100vw - 48px);
-  border: 2px solid var(--hotspot-color);
-  border-radius: 12px;
+  max-height: calc(100vh - 48px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 14px;
   pointer-events: none;
   z-index: 100;
   animation: preview-appear 0.18s ease both;
 }
 
-.hotspot-preview--left  { left:  24px; }
-.hotspot-preview--right { right: 24px; }
+.hotspot-card--left  { left:  24px; }
+.hotspot-card--right { right: 24px; }
+
+.hotspot-preview {
+  display: block;
+  width: 100%;
+  min-height: 0;
+  object-fit: contain;
+  border: 2px solid var(--hotspot-color);
+  border-radius: 12px;
+}
 
 @keyframes preview-appear {
   from { opacity: 0; transform: translateY(8px); }

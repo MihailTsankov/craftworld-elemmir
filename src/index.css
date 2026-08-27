@@ -1,3 +1,13 @@
+/* Eldar script — Aelfa (freeware by Belladonna, 1999).
+   See src/assets/fonts/Aelfa_readme.txt for the license. */
+@font-face {
+  font-family: "Aelfa";
+  src: url("./assets/fonts/Aelfa-mlam.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;

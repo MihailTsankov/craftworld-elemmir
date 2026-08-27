@@ -1,0 +1,65 @@
+/* ── Decoding caption ────────────────────────────────────────────────── */
+.decoding-text {
+  font-size: 1.05rem;
+  /* Fixed length (not a ratio) so oversized runes can't stretch line boxes. */
+  line-height: 1.95rem;
+  color: color-mix(in srgb, var(--hotspot-color) 55%, #f2f6ff);
+  text-shadow:
+    0 0 8px color-mix(in srgb, var(--hotspot-color) 70%, transparent),
+    0 1px 0 #000,
+    0 -1px 0 #000,
+    1px 0 0 #000,
+    -1px 0 0 #000,
+    0 2px 4px rgba(0, 0, 0, 1),
+    0 0 10px rgba(0, 0, 0, 1),
+    0 0 20px rgba(0, 0, 0, 0.9);
+  text-wrap: pretty;
+  overflow: visible;
+}
+
+/* Keeps per-character cells from breaking words at arbitrary points. */
+.decoding-text__word {
+  white-space: nowrap;
+}
+
+.decoding-text__char {
+  position: relative;
+  display: inline-block;
+}
+
+/* Invisible Alice copy that reserves the character's final footprint. */
+.decoding-text__sizer {
+  font-family: "Alice", serif;
+  visibility: hidden;
+}
+
+.decoding-text__glyph {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  white-space: pre;
+}
+
+.decoding-text__glyph--encoded {
+  font-family: "Aelfa", "Alice", serif;
+  font-size: 1.75em;
+  line-height: 1;
+  opacity: 1;
+}
+
+.decoding-text__glyph--decoded {
+  font-family: "Alice", serif;
+}
+
+/* Readable copy for assistive technology only. */
+.decoding-text__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import DecodingText from "./DecodingText";
 import "./HoverHotspot.css";
 
 interface Props {
@@ -12,6 +13,8 @@ interface Props {
   readonly previewSrc?: string;
   readonly previewAlt?: string;
   readonly previewSide?: "left" | "right";
+  /** Caption shown above the preview image; decodes from Eldar script into readable text. */
+  readonly text?: string;
 }
 
 /**
@@ -30,6 +33,7 @@ export default function HoverHotspot({
   previewSrc,
   previewAlt,
   previewSide = "left",
+  text,
 }: Props) {
   const [hovered, setHovered] = useState(false);
 
@@ -54,13 +58,18 @@ export default function HoverHotspot({
         onBlur={() => setHovered(false)}
       />
       {hovered && previewSrc && (
-        <img
-          src={previewSrc}
-          alt={previewAlt ?? label}
-          draggable={false}
-          className={`hotspot-preview hotspot-preview--${previewSide}`}
+        <div
+          className={`hotspot-card hotspot-card--${previewSide}`}
           style={{ "--hotspot-color": color } as React.CSSProperties}
-        />
+        >
+          {text && <DecodingText key={text} text={text} />}
+          <img
+            src={previewSrc}
+            alt={previewAlt ?? label}
+            draggable={false}
+            className="hotspot-preview"
+          />
+        </div>
       )}
     </>
   );

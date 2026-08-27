@@ -12,24 +12,28 @@ const hotspots = [
     left: "60%", top: "55%", width: "25%", height: "28%",
     color: "#9aad53",
     previewSrc: exoditeTemplePreview, previewSide: "left" as const,
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dapibus, tellus ac cursus commodo.",
   },
   {
     label: "Exodite Settlement",
     left: "20%", top: "60%", width: "23%", height: "20%",
     color: "#837245",
     previewSrc: exoditeDinoAreaPreview, previewSide: "right" as const,
+    text: "Nulla vitae elit libero, a pharetra augue. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.",
   },
   {
     label: "Exodite Riders",
     left: "43%", top: "30%", width: "10%", height: "12%",
     color: "#bd6e5e",
     previewSrc: exoditeRidersPreview, previewSide: "right" as const,
+    text: "Sed posuere consectetur est at lobortis. Aenean eu leo quam pellentesque ornare sem lacinia.",
   },
   {
     label: "Velociraptor Hatchery",
     left: "10%", top: "20%", width: "15%", height: "13%",
     color: "#fffeef",
     previewSrc: exoditeHatcheryPreview, previewSide: "left" as const,
+    text: "Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Praesent commodo cursus magna.",
   },
 ];
 
