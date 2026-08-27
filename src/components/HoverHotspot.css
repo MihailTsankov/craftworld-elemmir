@@ -1,5 +1,6 @@
 /* ── Circular hotspot button ─────────────────────────────────────────── */
 .hotspot {
+  --hotspot-color: #9ad9ff;
   position: absolute;
   border: none;
   background: transparent;
@@ -12,12 +13,12 @@
 
 .hotspot:hover,
 .hotspot:focus-visible {
-  box-shadow: 0 0 30px 15px color-mix(in srgb, var(--hotspot-color) 60%, transparent);
-  background: color-mix(in srgb, var(--hotspot-color) 8%, transparent);
+  box-shadow: 0 0 30px 15px color-mix(in srgb, var(--hotspot-color, #9ad9ff) 60%, transparent);
+  background: color-mix(in srgb, var(--hotspot-color, #9ad9ff) 8%, transparent);
 }
 
 .hotspot:focus-visible {
-  outline: 2px solid var(--hotspot-color);
+  outline: 2px solid var(--hotspot-color, #9ad9ff);
   outline-offset: 2px;
 }
 
@@ -41,11 +42,17 @@
 .hotspot-card--right { right: 24px; }
 
 .hotspot-preview {
+  --hotspot-color: #9ad9ff;
   display: block;
-  width: 100%;
-  min-height: 0;
+  align-self: center;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  /* Caps tall/portrait images so the border hugs the image instead of
+     stretching into an oversized box. */
+  max-height: min(65vh, 640px);
   object-fit: contain;
-  border: 2px solid var(--hotspot-color);
+  border: 2px solid var(--hotspot-color, #9ad9ff);
   border-radius: 12px;
 }
 

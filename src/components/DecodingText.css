@@ -1,11 +1,12 @@
 /* ── Decoding caption ────────────────────────────────────────────────── */
 .decoding-text {
+  --hotspot-color: #9ad9ff;
   font-size: 1.05rem;
   /* Fixed length (not a ratio) so oversized runes can't stretch line boxes. */
   line-height: 1.95rem;
-  color: color-mix(in srgb, var(--hotspot-color) 55%, #f2f6ff);
+  color: color-mix(in srgb, var(--hotspot-color, #9ad9ff) 55%, #f2f6ff);
   text-shadow:
-    0 0 8px color-mix(in srgb, var(--hotspot-color) 70%, transparent),
+    0 0 8px color-mix(in srgb, var(--hotspot-color, #9ad9ff) 70%, transparent),
     0 1px 0 #000,
     0 -1px 0 #000,
     1px 0 0 #000,
