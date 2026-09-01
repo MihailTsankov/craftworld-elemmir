@@ -15,7 +15,7 @@ export default function IslandOceanPage() {
           color="#ADD8E6"
           previewSrc={swoopingHawksPreview}
           previewSide="left"
-          text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur."
+          fragmentId="mountain-crown"
         />
         <HoverHotspot
           label="Ships"

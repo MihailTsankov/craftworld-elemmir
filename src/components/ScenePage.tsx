@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import BackToStarshipIcon from "./BackToStarshipIcon";
+import FarseerCodex from "./FarseerCodex";
 import "./ScenePage.css";
 
 /** Shared full-screen page shell: black background + back icon. */
@@ -7,6 +8,7 @@ export function ScenePage({ children }: { children: ReactNode }) {
   return (
     <div className="scene-page">
       <BackToStarshipIcon />
+      <FarseerCodex />
       {children}
     </div>
   );

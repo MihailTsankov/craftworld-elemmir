@@ -1,0 +1,216 @@
+/* ── Farseer's Codex ─────────────────────────────────────────────────── */
+.codex {
+  --codex-color: #9ad9ff;
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  z-index: 200;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+  gap: 10px;
+  font-family: "Alice", serif;
+  color: #eaf4ff;
+}
+
+.codex__sigil {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  transform-origin: center;
+  animation: codex-icon-drift 6.8s ease-in-out infinite;
+}
+
+.codex__sigil::before {
+  content: "";
+  position: absolute;
+  inset: -16px -10px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--codex-color) 74%, transparent) 0%,
+    color-mix(in srgb, var(--codex-color) 45%, transparent) 45%,
+    color-mix(in srgb, var(--codex-color) 18%, transparent) 65%,
+    transparent 80%
+  );
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+  pointer-events: none;
+}
+
+.codex__sigil:hover::before,
+.codex__sigil:focus-visible::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.codex__sigil-mark {
+  width: 22px;
+  height: 22px;
+  transform: rotate(45deg);
+  background: var(--codex-color);
+  box-shadow: 0 0 10px 2px color-mix(in srgb, var(--codex-color) 70%, transparent);
+  will-change: transform;
+  animation: codex-icon-wobble 4.9s ease-in-out infinite;
+}
+
+.codex__sigil:focus-visible {
+  outline: 1px solid var(--codex-color);
+  outline-offset: 3px;
+}
+
+.codex__peek {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid color-mix(in srgb, var(--codex-color) 45%, transparent);
+  border-radius: 999px;
+  background: rgba(4, 8, 18, 0.72);
+  font-size: 0.9rem;
+  backdrop-filter: blur(3px);
+  pointer-events: none;
+  animation: codex-peek-in 0.18s ease-out;
+}
+
+.codex__peek-count {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+}
+
+.codex__peek-label {
+  opacity: 0.75;
+}
+
+@keyframes codex-peek-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Pulses while the completed prophecy is waiting to be acknowledged. */
+.codex--revealed .codex__sigil-mark {
+  animation: codex-reveal 1.6s ease-in-out infinite, codex-icon-wobble 4.9s ease-in-out infinite;
+}
+
+@keyframes codex-reveal {
+  0%, 100% { box-shadow: 0 0 10px 0 color-mix(in srgb, var(--codex-color) 30%, transparent); }
+  50%      { box-shadow: 0 0 26px 8px color-mix(in srgb, var(--codex-color) 65%, transparent); }
+}
+
+@keyframes codex-icon-drift {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  18%      { transform: translate3d(-2px, -1px, 0); }
+  37%      { transform: translate3d(2px, -3px, 0); }
+  61%      { transform: translate3d(-3px, 1px, 0); }
+  82%      { transform: translate3d(1px, -2px, 0); }
+}
+
+@keyframes codex-icon-wobble {
+  0%, 100% { transform: rotate(45deg) translateY(0); }
+  25%      { transform: rotate(43deg) translateY(-1px); }
+  50%      { transform: rotate(46deg) translateY(1px); }
+  75%      { transform: rotate(44deg) translateY(0); }
+}
+
+.codex__panel {
+  width: min(380px, calc(100vw - 40px));
+  max-height: min(70vh, 640px);
+  overflow-y: auto;
+  padding: 16px 18px;
+  border: 1px solid color-mix(in srgb, var(--codex-color) 40%, transparent);
+  border-radius: 12px;
+  background: rgba(4, 8, 18, 0.9);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+.codex__title {
+  margin: 0 0 4px;
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: color-mix(in srgb, var(--codex-color) 60%, #ffffff);
+}
+
+.codex__hint {
+  margin: 0 0 12px;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.codex__list {
+  margin: 0;
+  padding-left: 1.2em;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.92rem;
+}
+
+.codex__item {
+  opacity: 0.35;
+  font-family: "Aelfa", "Alice", serif;
+  letter-spacing: 0.2em;
+}
+
+.codex__item--found {
+  opacity: 1;
+  font-family: "Alice", serif;
+  letter-spacing: normal;
+  color: color-mix(in srgb, var(--codex-color) 40%, #ffffff);
+}
+
+.codex__prophecy {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid color-mix(in srgb, var(--codex-color) 25%, transparent);
+}
+
+.codex__link {
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--codex-color);
+  letter-spacing: 0.06em;
+}
+
+.codex__reset {
+  margin-top: 14px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: 0.75rem;
+  opacity: 0.35;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.codex__reset:hover,
+.codex__reset:focus-visible {
+  opacity: 0.8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .codex__sigil {
+    animation: none;
+  }
+
+  .codex__sigil-mark {
+    animation: none;
+  }
+
+  .codex--revealed .codex__sigil-mark {
+    animation: none;
+    box-shadow: 0 0 20px 4px color-mix(in srgb, var(--codex-color) 55%, transparent);
+  }
+}

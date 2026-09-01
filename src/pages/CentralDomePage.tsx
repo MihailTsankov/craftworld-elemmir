@@ -28,7 +28,7 @@ const hotspots = [
     left: "74%", top: "40%", width: "8%", height: "14%",
     color: "#8b0000",
     previewSrc: autarchChamber, previewSide: "left" as const,
-    text: "Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper.",
+    fragmentId: "autarch-chamber",
   },
   {
     label: "Bone Singers Terrace",

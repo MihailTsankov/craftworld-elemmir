@@ -12,7 +12,7 @@ const hotspots = [
     left: "60%", top: "55%", width: "25%", height: "28%",
     color: "#9aad53",
     previewSrc: exoditeTemplePreview, previewSide: "left" as const,
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dapibus, tellus ac cursus commodo.",
+    fragmentId: "exodite-temple",
   },
   {
     label: "Exodite Settlement",

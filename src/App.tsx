@@ -2,6 +2,7 @@ import "./App.css";
 import Stars from "./components/Stars";
 import Spaceship from "./components/Spaceship";
 import DomeButtons from "./components/DomeButtons";
+import FarseerCodex from "./components/FarseerCodex";
 import craftworldImg from "./assets/craftworld-elemmir-background.png";
 
 export default function App() {
@@ -15,6 +16,9 @@ export default function App() {
 
       {/* Dome buttons */}
       <DomeButtons />
+
+      {/* Puzzle progress, available from the very first screen */}
+      <FarseerCodex />
 
       {/* Stars always on top */}
       <Stars />

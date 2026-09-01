@@ -27,7 +27,7 @@ const hotspots = [
     left: "75%", top: "37%", width: "12%", height: "20%",
     color: "#254268",
     previewSrc: rangersTemplePreview, previewSide: "left" as const,
-    text: "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+    fragmentId: "rangers-temple",
   },
   {
     label: "Bathing Falls",

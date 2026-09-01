@@ -1,0 +1,23 @@
+/* ── Hidden seventh scene ────────────────────────────────────────────── */
+.prophecy {
+  --hotspot-color: #cbb2ff;
+  position: absolute;
+  left: 50%;
+  bottom: 6%;
+  transform: translateX(-50%);
+  width: min(720px, 88%);
+  text-align: center;
+  pointer-events: none;
+}
+
+.prophecy__title {
+  margin: 0 0 12px;
+  font-family: "Alice", serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  color: #f0e9ff;
+  text-shadow:
+    0 0 12px rgba(203, 178, 255, 0.8),
+    0 2px 6px rgba(0, 0, 0, 1);
+}

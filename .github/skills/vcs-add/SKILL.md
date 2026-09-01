@@ -1,13 +1,14 @@
 ---
 name: vcs-add
-description: A skill that instructs the agent to stage newly created project files with git add after creating them.
+description: Always apply this skill whenever the agent creates ANY new, non-temporary file inside the project repository (via create_file or any equivalent tool), regardless of the task that triggered the creation (new component, page, config, asset, doc, etc.). Immediately stage the new file with git add after creating it.
 ---
 
 # VCS Add — Stage New Files After Creation
 
-Whenever you create **any new file** as part of implementing a feature, fix, or
-any other task in this project, you **MUST** immediately stage it with Git so it
-is tracked by version control.
+Whenever you create **any new, non-temporary file** as part of implementing a
+feature, fix, or any other task in this project, you **MUST** immediately stage
+it with Git so it is tracked by version control. This applies to **every** file
+creation, not just tasks that mention Git explicitly — do not wait to be asked.
 
 ## Rule
 
@@ -34,6 +35,12 @@ is tracked by version control.
 - Edits to **existing** files — `git add` is only needed for brand-new files
   that are currently untracked.
 - Files explicitly excluded by `.gitignore` (e.g. `node_modules/`, `dist/`).
+- **Temporary / non-project files**, i.e. anything created outside the
+  `C:\projects\craftworld-elemmir` repository working tree — for example files
+  under the Copilot CLI session workspace (`~/.copilot/session-state/...`,
+  including `plan.md`), scratch files used only to test a command, or files in
+  the OS temp directory. These are not part of the project and must never be
+  added to VCS.
 
 ## Implementation Recipe
 

@@ -7,6 +7,13 @@ interface Props {
   readonly speed?: number;
   /** Milliseconds to wait before the decoding animation starts. */
   readonly delay?: number;
+  /**
+   * When false the text stays in unreadable Aelfa runes forever — used for
+   * prophecy fragments the player has not collected yet.
+   */
+  readonly autoDecode?: boolean;
+  /** Replaces the screen-reader copy, e.g. while the text is undeciphered. */
+  readonly srText?: string;
 }
 
 function prefersReducedMotion() {
@@ -42,14 +49,18 @@ function segments(text: string) {
  *
  * Remount (e.g. `key={text}`) to replay the animation for new text.
  */
-export default function DecodingText({ text, speed = 28, delay = 2000 }: Props) {
+export default function DecodingText({
+  text,
+  speed = 28,
+  delay = 1000,
+  autoDecode = true,
+  srText,
+}: Props) {
   const reducedMotion = prefersReducedMotion();
-  const [revealed, setRevealed] = useState(() =>
-    prefersReducedMotion() ? text.length : 0,
-  );
+  const [revealed, setRevealed] = useState(0);
 
   useEffect(() => {
-    if (reducedMotion) return;
+    if (!autoDecode || reducedMotion) return;
 
     let intervalId: number | undefined;
     let n = 0;
@@ -66,7 +77,12 @@ export default function DecodingText({ text, speed = 28, delay = 2000 }: Props) 
       window.clearTimeout(timeoutId);
       window.clearInterval(intervalId);
     };
-  }, [text.length, speed, delay, reducedMotion]);
+  }, [text.length, speed, delay, reducedMotion, autoDecode]);
+
+  // Held fragments never resolve; reduced motion skips straight to plain text.
+  let decodedUpTo = revealed;
+  if (!autoDecode) decodedUpTo = 0;
+  else if (reducedMotion) decodedUpTo = text.length;
 
   return (
     <p className="decoding-text">
@@ -81,7 +97,7 @@ export default function DecodingText({ text, speed = 28, delay = 2000 }: Props) 
                   <span className="decoding-text__sizer">{char}</span>
                   <span
                     className={
-                      start + i < revealed
+                      start + i < decodedUpTo
                         ? "decoding-text__glyph decoding-text__glyph--decoded"
                         : "decoding-text__glyph decoding-text__glyph--encoded"
                     }
@@ -94,7 +110,7 @@ export default function DecodingText({ text, speed = 28, delay = 2000 }: Props) 
           ),
         )}
       </span>
-      <span className="decoding-text__sr">{text}</span>
+      <span className="decoding-text__sr">{srText ?? text}</span>
     </p>
   );
 }

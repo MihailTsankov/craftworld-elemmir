@@ -2,6 +2,29 @@
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
+## The Rune Cipher Fragments puzzle
+
+Six of the scene hotspots hide a fragment of a Farseer's prophecy. A fragment
+hotspot glints softly and its caption stays in unreadable Aelfa runes until the
+hotspot is **clicked**, which records it in the *Farseer's Codex* — the counter
+in the top-right corner of every page. Collecting all six assembles the full
+prophecy and unlocks the hidden seventh scene at `/prophecy`.
+
+| Scene | Hotspot | Fragment id |
+| --- | --- | --- |
+| `/dome` | Autarch Chamber | `autarch-chamber` |
+| `/hanging-gardens` | Rangers Temple | `rangers-temple` |
+| `/island-ocean` | The top of the mountain structure | `mountain-crown` |
+| `/small-island` | Swooping Hawks hunting | `swooping-hawks` |
+| `/exodite-planet` | Exodite Temple | `exodite-temple` |
+| `/back-side` | Guardian Host | `guardian-host` |
+
+Progress lives in `localStorage` under `elemmir.puzzle.v1`. To replay the puzzle,
+open the Codex and use *Forget the prophecy*, or clear that key by hand.
+
+Source: `src/puzzle/` (fragment data + provider), `src/components/FarseerCodex.tsx`,
+and the `fragmentId` prop on `src/components/HoverHotspot.tsx`.
+
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
