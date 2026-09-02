@@ -3,6 +3,7 @@ import exoditeTemplePreview from "../assets/exodite-temple.png";
 import exoditeDinoAreaPreview from "../assets/exodite-dino-area.png";
 import exoditeRidersPreview from "../assets/exodite-veloci-riders.png";
 import exoditeHatcheryPreview from "../assets/exodite-veloci-hatchery.png";
+import exoditeCommunalPreview from "../assets/exodite-communal-area.jfif";
 import { ScenePage, SceneFrame } from "../components/ScenePage";
 import HoverHotspot from "../components/HoverHotspot";
 
@@ -34,6 +35,13 @@ const hotspots = [
     color: "#fffeef",
     previewSrc: exoditeHatcheryPreview, previewSide: "left" as const,
     text: "Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Praesent commodo cursus magna.",
+  },
+  {
+    label: "Communal Area",
+    left: "74%", top: "24%", width: "12%", height: "10%",
+    color: "#D5CBB4FF",
+    previewSrc: exoditeCommunalPreview, previewSide: "left" as const,
+    text: "Commit this verdant sanctuary to the memory of our seers, kin, for it is the sacred forum where our Exodite cousins have long converged to harmonize with the Maiden Worlds. Here, bathed in the world-song, scattered kindreds gather to weave the threads of ancestral lore, exchange the vital wisdom of the soil, and forge the communal bonds that ensure our enduring survival against the dying of the stars.",
   },
 ];
 
