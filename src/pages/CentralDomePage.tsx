@@ -1,10 +1,10 @@
 import centralDome from "../assets/central-dome.png";
-import crystalDomeMainHall from "../assets/central-dome-crystal-dome-main-hall.png";
+import crystalDomeMainHall from "../assets/central-dome-main-hall.png";
 import bansheeTemple from "../assets/central-dome-banshees_temple.png";
 import autarchChamber from "../assets/central-dome-autarch-chamber.png";
 import boneSingers from "../assets/central-dome-bonesingers.png";
 import aeldariStatuePreview from "../assets/central-dome-bonesingers-terrace.png";
-import mainHallEntrancePreview from "../assets/central-dome-main-hall.png";
+import mainHallEntrancePreview from "../assets/central-dome-main-structure.png";
 import { ScenePage, SceneFrame } from "../components/ScenePage";
 import HoverHotspot from "../components/HoverHotspot";
 
@@ -14,7 +14,7 @@ const hotspots = [
     left: "14%", top: "35%", width: "12%", height: "20%",
     color: "#b464ff",
     previewSrc: bansheeTemple, previewSide: "right" as const,
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus suscipit lectus mollis placerat.",
+    text: "Behold this Aspect Shrine, kin, for it is upon these runic stones—beneath the twilight arches of Elemmir's great domes—that generations of our sisters have honed their sorrow into the deadly arts of Khaine. Let the memory of their ringing blades and the glowing resonance of these psychic crystals be sung into the infinity circuit, ensuring the martial perfection forged in this sacred circle is never lost to the dying of the stars.",
   },
   {
     label: "Crystal Dome Main Hall",
