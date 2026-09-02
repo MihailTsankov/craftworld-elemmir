@@ -5,6 +5,7 @@ import './index.css'
 import App from './App.tsx'
 import CentralDomePage from './pages/CentralDomePage.tsx'
 import BackSidePage from './pages/BackSidePage.tsx'
+import TopCrystalChamberPage from './pages/TopCrystalChamberPage.tsx'
 import IslandOceanPage from './pages/IslandOceanPage.tsx'
 import SmallIslandPage from './pages/SmallIslandPage.tsx'
 import ExoditePlanetPage from './pages/ExoditePlanetPage.tsx'
@@ -21,6 +22,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="/" element={<App />} />
           <Route path="/dome" element={<CentralDomePage />} />
           <Route path="/back-side" element={<BackSidePage />} />
+          <Route path="/top-crystal-chamber" element={<TopCrystalChamberPage />} />
           <Route path="/island-ocean" element={<IslandOceanPage />} />
           <Route path="/small-island" element={<SmallIslandPage />} />
           <Route path="/exodite-planet" element={<ExoditePlanetPage />} />

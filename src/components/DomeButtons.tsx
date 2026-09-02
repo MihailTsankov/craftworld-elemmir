@@ -48,6 +48,12 @@ export default function DomeButtons() {
         aria-label="Aeldari Library"
         onClick={() => navigate("/aeldari-library")}
       />
+      <button
+        type="button"
+        className="dome-hover dome-button-top-crystal-chamber"
+        aria-label="Top Crystal Chamber"
+        onClick={() => navigate("/top-crystal-chamber")}
+      />
     </div>
   );
 }
