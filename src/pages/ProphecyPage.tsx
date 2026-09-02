@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import soulstone from "../assets/elemmir-the-star-jewel-symbol-bulky-soulstone.png";
+import soulstone from "../assets/symbol-elemmir-sci-fi-book.jfif";
 import { ScenePage, SceneFrame } from "../components/ScenePage";
 import DecodingText from "../components/DecodingText";
 import { assembleProphecy } from "../puzzle/fragments";
