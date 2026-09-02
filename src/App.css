@@ -144,7 +144,7 @@
         0 0 60px rgba(60, 100, 42, 0.5);
 }
 
-/* === Clickable Hanging Gardens (DEBUG MODE) === */
+/* === Clickable Hanging Gardens === */
 .dome-button-hanging-gardens {
     top: 19.6%;
     left: 17.6%;
@@ -160,4 +160,21 @@
         0 0 60px rgba(161, 71, 18, 0.5);
 }
 
+
+/* === Clickable Aeldari Library === */
+.dome-button-aeldari-library {
+    top: 14.5%;
+    left: 41.2%;
+    width: 3%;
+    height: 4.4%;
+    transform: rotate(30deg);
+}
+
+.dome-button-aeldari-library::before {
+    /* color #5CA8C3 used with derived opacities */
+    background: radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.35) 0%, rgba(92, 168, 195, 0.25) 45%, transparent 75%);
+    box-shadow:
+        0 0 30px rgba(92, 168, 195, 0.7),
+        0 0 60px rgba(92, 168, 195, 0.5);
+}
 

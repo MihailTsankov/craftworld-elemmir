@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import soulstone from "../assets/symbol-elemmir-sci-fi-book.jfif";
+import library from "../assets/chamber-of-ulthanash.jfif";
 import { ScenePage, SceneFrame } from "../components/ScenePage";
 import DecodingText from "../components/DecodingText";
 import { assembleProphecy } from "../puzzle/fragments";
@@ -17,7 +17,7 @@ export default function ProphecyPage() {
 
   return (
     <ScenePage>
-      <SceneFrame src={soulstone} alt="The Chamber of Ulthanash">
+      <SceneFrame src={library} alt="The Chamber of Ulthanash">
         <div className="prophecy">
           <h1 className="prophecy__title">The Chamber of Ulthanash</h1>
           <DecodingText text={assembleProphecy()} delay={600} speed={20} />

@@ -42,6 +42,12 @@ export default function DomeButtons() {
         aria-label="Hanging Gardens"
         onClick={() => navigate("/hanging-gardens")}
       />
+      <button
+        type="button"
+        className="dome-hover dome-button-aeldari-library"
+        aria-label="Aeldari Library"
+        onClick={() => navigate("/aeldari-library")}
+      />
     </div>
   );
 }

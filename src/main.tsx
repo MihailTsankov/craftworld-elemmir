@@ -10,6 +10,7 @@ import SmallIslandPage from './pages/SmallIslandPage.tsx'
 import ExoditePlanetPage from './pages/ExoditePlanetPage.tsx'
 import HangingGardensPage from './pages/HangingGardensPage.tsx'
 import ProphecyPage from './pages/ProphecyPage.tsx'
+import AeldariLibraryPage from './pages/AeldariLibraryPage.tsx'
 import PuzzleProvider from './puzzle/PuzzleProvider.tsx'
 
 createRoot(document.getElementById('root')!).render(
@@ -24,6 +25,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="/small-island" element={<SmallIslandPage />} />
           <Route path="/exodite-planet" element={<ExoditePlanetPage />} />
           <Route path="/hanging-gardens" element={<HangingGardensPage />} />
+          <Route path="/aeldari-library" element={<AeldariLibraryPage />} />
           <Route path="/prophecy" element={<ProphecyPage />} />
         </Routes>
       </PuzzleProvider>
