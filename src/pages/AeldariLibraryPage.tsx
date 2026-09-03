@@ -2,10 +2,12 @@ import libraryImage from "../assets/library.png";
 import librarySymbolBook from "../assets/library-symbol-elemmir-sci-fi-book.jfif";
 import { ScenePage, SceneFrame } from "../components/ScenePage";
 import HoverHotspot from "../components/HoverHotspot";
+import FarseerCodex from "../components/FarseerCodex";
 
 export default function AeldariLibraryPage() {
   return (
     <ScenePage>
+      <FarseerCodex />
       <SceneFrame src={libraryImage} alt="Aeldari Library">
         <HoverHotspot
           label="Elemmir Star Jewel Codex"
