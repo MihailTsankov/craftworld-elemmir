@@ -23,7 +23,7 @@ export default function IslandOceanPage() {
           color="red"
           previewSrc={lakePreview}
           previewSide="right"
-          text="Vestibulum id ligula porta felis euismod semper. Cras justo odio, dapibus ac facilisis in, egestas eget quam."
+          text="Gliding across the tranquil, contained seas of the great biosphere dome aboard a crimson skiff, I marveled at the vastness of the void stretching just beyond the protective wraithbone archways. Before me rose a lush, crystal-studded island crowned by an elegant wraithbone sanctuary, a breathtaking harmony of untamed nature and our ancient architecture preserved amidst the stars."
         />
         <HoverHotspot
           label="Striking Scorpions sneaking"
@@ -31,7 +31,7 @@ export default function IslandOceanPage() {
           color="green"
           previewSrc={strikingScorpionsSneakingPreview}
           previewSide="left"
-          text="Donec id elit non mi porta gravida at eget metus. Curabitur blandit tempus porttitor."
+          text="Stepping into the shadowy recesses of the island's hidden groves, I observed a pack of Striking Scorpions moving with silent precision through the dense undergrowth. Their razor-sharp claws gleamed in the filtered sunlight, and their venomous stingers dripped with deadly intent, making them formidable adversaries in the wilds of our Craftworld."
         />
       </SceneFrame>
     </ScenePage>
